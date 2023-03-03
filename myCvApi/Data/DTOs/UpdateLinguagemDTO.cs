@@ -1,11 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace myCvApi.Models;
-public class Linguagem 
+namespace myCvApi.Data;
+public class UpdateLinguagemDto 
 {
-    [Key]
-    [Required]
-    public int Id { get; set; }
     [Required(ErrorMessage = "O nome da linguagem é obrigatório.")]
     public string Nome { get; set; }
     [Required(ErrorMessage = "O nome da Cor é obrigatória.")]
