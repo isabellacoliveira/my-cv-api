@@ -1,5 +1,6 @@
 using System.Collections;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using myCvApi.Data;
@@ -51,6 +52,44 @@ public class LinguagensController : ControllerBase
             return Ok(linguagemDto);
         }
         return NotFound();
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizaLinguagem(int id, [FromBody] UpdateLinguagemDto linguagemDto)
+    {
+        var linguagem = _context.Linguagens.FirstOrDefault(linguagem => linguagem.Id == id);
+        if(linguagem == null) return NotFound(); 
+        _mapper.Map(linguagemDto, linguagem); 
+        _context.SaveChanges(); 
+        return NoContent();
+    }
+
+    [HttpPatch("{id}")]
+    public IActionResult AtualizaLinguagemParcial(int id, JsonPatchDocument<UpdateLinguagemDto> patch)
+    {
+            var linguagem = _context.Linguagens.FirstOrDefault(
+            linguagem => linguagem.Id == id);
+            if(linguagem == null) return NotFound();
+            var linguagemParaAtualizar = _mapper.Map<UpdateLinguagemDto>(linguagem);
+            patch.ApplyTo(linguagemParaAtualizar, ModelState);
+            if(!TryValidateModel(linguagemParaAtualizar))
+            {
+                return ValidationProblem(ModelState);
+            }
+            _mapper.Map(linguagemParaAtualizar, linguagem);
+            _context.SaveChanges();
+            return NoContent(); 
+    }
+    
+    [HttpDelete("{id}")]
+    public IActionResult DeletaLinguagem(int id)
+    {
+        var linguagem = _context.Linguagens.FirstOrDefault(linguagem => linguagem.Id == id);
+        if(linguagem == null) return NotFound(); 
+        
+        _context.Remove(linguagem); 
+        _context.SaveChanges(); 
+        return NoContent(); 
     }
 
 }
