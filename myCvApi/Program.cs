@@ -9,6 +9,7 @@ builder.Services.AddDbContext<LinguagemContext>(opts =>
             opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 // 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// builder.Services.AddScoped<>;
 
 // Add services to the container.
 
@@ -17,6 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+
 
 var app = builder.Build();
 

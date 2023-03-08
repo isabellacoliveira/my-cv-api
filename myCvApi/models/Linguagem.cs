@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace myCvApi.Models;
 public class Linguagem 
@@ -14,4 +15,6 @@ public class Linguagem
     public string CorTexto { get; set; }
     [Required(ErrorMessage = "A URL da imagem é obrigatória.")]
     public string Imagem { get; set; }
+    [JsonIgnore]
+    public virtual List<Projeto> Projetos { get; set; }
 }

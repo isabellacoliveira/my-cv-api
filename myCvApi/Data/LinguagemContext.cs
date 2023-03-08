@@ -9,5 +9,17 @@ public class LinguagemContext : DbContext
     {
 
     }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Projeto>()
+                .HasOne(projeto => projeto.Linguagem)
+                .WithMany(linguagem => linguagem.Projetos)
+                .HasForeignKey(projeto => projeto.LinguagemId);
+        }
     public DbSet<Linguagem> Linguagens { get; set; }
+    public DbSet<Projeto> Projetos { get; set; }
+
+    internal class WebAppContext
+    {
+    }
 }
