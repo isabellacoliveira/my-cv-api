@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace myCvApi.Migrations
 {
     /// <inheritdoc />
-    public partial class nova : Migration
+    public partial class Projetos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

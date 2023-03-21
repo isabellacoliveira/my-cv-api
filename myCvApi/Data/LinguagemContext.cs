@@ -16,6 +16,7 @@ public class LinguagemContext : DbContext
                 .WithMany(linguagem => linguagem.Projetos)
                 .HasForeignKey(projeto => projeto.LinguagemId);
         }
+        
     public DbSet<Linguagem> Linguagens { get; set; }
     public DbSet<Projeto> Projetos { get; set; }
 

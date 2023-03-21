@@ -9,8 +9,10 @@ public class LinguagemProfile : Profile
     public LinguagemProfile()
     {
         CreateMap<CreateLinguagemDto, Linguagem>(); 
-        CreateMap<UpdateLinguagemDto, Linguagem>(); 
         CreateMap<Linguagem, UpdateLinguagemDto>(); 
-        CreateMap<Linguagem, ReadLinguagemDto>(); 
+        CreateMap<Linguagem, ReadLinguagemDto>()
+          .ForMember(linguagemDto => linguagemDto.Projetos,
+                    opt => opt.MapFrom(linguagem => linguagem.Projetos));
+        CreateMap<UpdateLinguagemDto, Linguagem>(); 
     }
 }

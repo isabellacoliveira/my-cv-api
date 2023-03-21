@@ -1,8 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace myCvApi.Data;
 public class ReadLinguagemDto 
 {
+    public int Id { get; set; }
     public string Nome { get; set; }
     public string Cor { get; set; }
     public string CorTexto { get; set; }

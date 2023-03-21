@@ -18,6 +18,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+builder.Services.AddMvc(options =>
+{
+   options.SuppressAsyncSuffixInActionNames = false;
+});
 
 
 var app = builder.Build();

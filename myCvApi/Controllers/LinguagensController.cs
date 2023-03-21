@@ -42,6 +42,7 @@ public class LinguagensController : ControllerBase
         return _mapper.Map<List<ReadLinguagemDto>>(_context.Linguagens.FromSqlRaw($"SELECT Id, Nome, Cor, CorTexto, Imagem from LINGUAGENS WHERE linguagens.linguagemId = {linguagemId}").ToList());
     }
 
+
     [HttpGet("{id}")]
     public IActionResult RecuperaLinguagemPorId(int id)
     {

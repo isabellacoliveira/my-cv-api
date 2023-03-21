@@ -15,6 +15,5 @@ public class Linguagem
     public string CorTexto { get; set; }
     [Required(ErrorMessage = "A URL da imagem é obrigatória.")]
     public string Imagem { get; set; }
-    [JsonIgnore]
-    public virtual List<Projeto> Projetos { get; set; }
+    public virtual ICollection<Projeto> Projetos { get; set; }
 }

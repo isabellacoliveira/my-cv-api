@@ -29,7 +29,8 @@ public class ProjetoController : ControllerBase
         Projeto projeto = _mapper.Map<Projeto>(projetoDto);
         _context.Projetos.Add(projeto); 
         _context.SaveChanges(); 
-        return CreatedAtAction(nameof(RecuperaProjetoPorId), new { Id = projeto.Id }, projetoDto);
+        return CreatedAtAction(nameof(RecuperaProjetoPorId),  new {  
+                                          linguagemId = projeto.LinguagemId }, projeto);
     }
 
     [HttpGet]
